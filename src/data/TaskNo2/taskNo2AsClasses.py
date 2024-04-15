@@ -2,6 +2,7 @@ import pandas as pd
 import yfinance as yf
 import matplotlib.pyplot as plt
 from matplotlib.dates import DateFormatter, MonthLocator
+from pandas.plotting import scatter_matrix
 
 class StockAnalyzer:
   """
@@ -28,8 +29,17 @@ class StockAnalyzer:
         ticker_symbol (str): Ticker symbol of the stock.
     """
     data = yf.download(ticker_symbol, self.start_date, self.end_date)
+    #Market Capitalisation
+    data['MarketCap'] = data['Open'] * data['Volume']
     data['Delta'] = data['Open'] - data['Close']
     data['Change'] = data['High'] - data['Low']
+    # Moving Averages for Stock Price Analysis 
+    data['MA05'] = data['Open'].rolling(5).mean()
+    data['MA10'] = data['Open'].rolling(10).mean()
+    data['MA25'] = data['Open'].rolling(25).mean()
+    data['MA50'] = data['Open'].rolling(50).mean()
+    data['MA100'] = data['Open'].rolling(100).mean()
+    data['MA200'] = data['Open'].rolling(200).mean()
     self.stocks[ticker_symbol] = data
     self.stock_name = stock_name
 
@@ -72,8 +82,7 @@ analyzer.add_stock('CCJ', 'Cameco')
 analyzer.add_stock('CAT', 'Caterpillar Inc.')
 analyzer.add_stock('FSLR', 'First Solar')
 analyzer.add_stock('BEN', 'Franklin Resources Inc.')
-analyzer.add_stock('CAT', 'Energy Transfer LP')
-analyzer.add_stock('ET', 'Caterpillar Inc.')
+analyzer.add_stock('ET', 'Energy Transfer LP')
 analyzer.add_stock('CSCO', 'Cisco Systems Inc.')
 analyzer.add_stock('CMCSA', 'Comcast Corp')
 analyzer.add_stock('LI', 'Li Auto')
@@ -97,3 +106,36 @@ analyzer.plot_dataframe_column('Close',  limit_ticks_to_30days=True, ticker_symb
 analyzer.plot_dataframe_column('Volume',  limit_ticks_to_30days=True, ticker_symbol='CAT')
 
 analyzer.stocks['CAT']
+
+# Coping a DataFrame from the analyzer function
+df_CAT = analyzer.stocks['CAT']['Open']
+
+# Creating a Scatter Plot
+data_Scattered = pd.concat([
+  analyzer.stocks['VRT']['Open'], 
+  analyzer.stocks['CCJ']['Open'], 
+  analyzer.stocks['CAT']['Open'], 
+  analyzer.stocks['FSLR']['Open'], 
+  analyzer.stocks['BEN']['Open'], 
+  analyzer.stocks['ET']['Open'],
+  analyzer.stocks['CSCO']['Open'], 
+  analyzer.stocks['CMCSA']['Open'],  
+  analyzer.stocks['LI']['Open'],  
+  analyzer.stocks['BWXT']['Open'] ],axis = 1)                                                             
+data_Scattered.columns = [ "['VRT']['Open']",
+                          "['CCJ']['Open']",
+                          "['CAT']['Open']",
+                          "['FSLR']['Open']",
+                          "['BEN']['Open']",
+                          "['ET']['Open']",
+                          "['CSCO']['Open']",
+                          "['CMCSA']['Open']",
+                          "['LI']['Open']",
+                          "['BWXT']['Open']"]
+scatter_matrix(data_Scattered, figsize = (20,20), hist_kwds= {'bins':250})
+
+analyzer.add_stock('ET', 'Energy Transfer LP')
+analyzer.add_stock('CSCO', 'Cisco Systems Inc.')
+analyzer.add_stock('CMCSA', 'Comcast Corp')
+analyzer.add_stock('LI', 'Li Auto')
+analyzer.add_stock('BWXT', 'BWX Technologies')
