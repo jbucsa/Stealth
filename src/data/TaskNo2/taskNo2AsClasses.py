@@ -20,17 +20,20 @@ class StockAnalyzer:
     self.end_date = end_date
     self.stocks = {}  # Dictionary to store downloaded stock dataframes
 
-  def add_stock(self, ticker_symbol,stock_name):
+  def add_stock(self, ticker_symbol, stock_name):
     """
     Downloads stock data for the given ticker symbol and stores it in the internal dictionary.
 
     Args:
         ticker_symbol (str): Ticker symbol of the stock.
     """
-    self.stocks[ticker_symbol] = yf.download(ticker_symbol, self.start_date, self.end_date)
+    data = yf.download(ticker_symbol, self.start_date, self.end_date)
+    data['Delta'] = data['Open'] - data['Close']
+    data['Change'] = data['High'] - data['Low']
+    self.stocks[ticker_symbol] = data
     self.stock_name = stock_name
 
-  def plot_dataframe_column(self, column_name, figsize=(15, 7), limit_ticks_to_30days=False):
+  def plot_dataframe_column(self, column_name, figsize=(15, 7), limit_ticks_to_30days=False, ticker_symbol=None):
     """
     Generates a line plot for the specified column across all downloaded stocks.
     Optionally limits x-axis ticks to 30-day intervals.
@@ -40,11 +43,18 @@ class StockAnalyzer:
         figsize (tuple, optional): Size of the plot figure. Defaults to (15, 7).
         limit_ticks_to_30days (bool, optional): If True, limits x-axis ticks to 30-day intervals. Defaults to False.
     """
-    for symbol, data in self.stocks.items():
-      data[column_name].plot(label=symbol, figsize=figsize)
-    plt.title(f"{column_name} of Stocks")
-    plt.legend()
+    if ticker_symbol is None:
+      for symbol, data in self.stocks.items():
+        data[column_name].plot(label=symbol, figsize=figsize)
+        plt.title(f"{column_name} of Stocks")
+        plt.legend()
 
+    if ticker_symbol is not None:  # Check if a specific ticker is provided
+      data = self.stocks[ticker_symbol]  # Access specific stock data
+      data[column_name].plot(label=ticker_symbol, figsize=figsize)
+      plt.title(f"{column_name} for {ticker_symbol}")
+      plt.legend()
+    
     if limit_ticks_to_30days:
       # Set major tick locator to show ticks every 30 days
       plt.gca().xaxis.set_major_locator(MonthLocator(interval=1))
@@ -72,8 +82,12 @@ analyzer.add_stock('BWXT', 'BWX Technologies')
 # ... Add more stocks as needed
 
 # Plot Volume data with limited ticks on x-axis
-analyzer.plot_dataframe_column('Volume', limit_ticks_to_30days=True)
+analyzer.plot_dataframe_column('Volume',  limit_ticks_to_30days=True)
+
+analyzer.plot_dataframe_column('Volume',  limit_ticks_to_30days=True, ticker_symbol='VRT')
 
 # Plot other data using the same method (e.g., Close, Open, High, Low, Adj Close)
-analyzer.plot_dataframe_column('Close')
+analyzer.plot_dataframe_column('Delta',  limit_ticks_to_30days=True, ticker_symbol='VRT')
 # ... Plot other columns
+
+analyzer.plot_dataframe_column('Volume',  limit_ticks_to_30days=True)
