@@ -121,7 +121,7 @@ data_Scattered = pd.concat([
   analyzer.stocks['CSCO']['Open'], 
   analyzer.stocks['CMCSA']['Open'],  
   analyzer.stocks['LI']['Open'],  
-  analyzer.stocks['BWXT']['Open'] ],axis = 1)                                                             
+  analyzer.stocks['BWXT']['Open'] ], axis = 1)                                                             
 data_Scattered.columns = [ "['VRT']['Open']",
                           "['CCJ']['Open']",
                           "['CAT']['Open']",
