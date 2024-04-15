@@ -37,18 +37,29 @@ vertiv['MA200'] = vertiv['Open'].rolling(200).mean()
 vertiv['Open'].plot(figsize = (15,7))
 vertiv['MA50'].plot()
 vertiv['MA200'].plot()
+plt.legend()
+
 
 cameco['MA50'] = cameco['Open'].rolling(50).mean()
 cameco['MA200'] = cameco['Open'].rolling(200).mean()
 cameco['Open'].plot(figsize = (15,7))
 cameco['MA50'].plot()
 cameco['MA200'].plot()
+plt.legend()
 
+
+caterpillar['MA05'] = caterpillar['Open'].rolling(5).mean()
+caterpillar['MA10'] = caterpillar['Open'].rolling(10).mean()
+caterpillar['MA20'] = caterpillar['Open'].rolling(20).mean()
 caterpillar['MA50'] = caterpillar['Open'].rolling(50).mean()
 caterpillar['MA200'] = caterpillar['Open'].rolling(200).mean()
 caterpillar['Open'].plot(figsize = (15,7))
+caterpillar['MA05'].plot()
+caterpillar['MA10'].plot()
+caterpillar['MA20'].plot()
 caterpillar['MA50'].plot()
 caterpillar['MA200'].plot()
+plt.legend()
 
 # Scattered Plot Matrix
 data = pd.concat([vertiv['Open'],cameco['Open'],caterpillar['Open']],axis = 1)
