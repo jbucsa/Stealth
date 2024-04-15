@@ -91,3 +91,9 @@ analyzer.plot_dataframe_column('Delta',  limit_ticks_to_30days=True, ticker_symb
 # ... Plot other columns
 
 analyzer.plot_dataframe_column('Volume',  limit_ticks_to_30days=True)
+
+analyzer.plot_dataframe_column('Close',  limit_ticks_to_30days=True, ticker_symbol='CAT')
+
+analyzer.plot_dataframe_column('Volume',  limit_ticks_to_30days=True, ticker_symbol='CAT')
+
+analyzer.stocks['CAT']
