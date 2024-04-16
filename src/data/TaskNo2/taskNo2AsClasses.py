@@ -4,6 +4,16 @@ import matplotlib.pyplot as plt
 from matplotlib.dates import DateFormatter, MonthLocator
 from pandas.plotting import scatter_matrix
 
+
+def stickColor(close, open):
+      if close >= open:
+        stickColor = 'green'
+      elif close < open:
+        stickColor = 'red'
+      else: 
+        stickColor = 'blue'
+      return stickColor
+
 class StockAnalyzer:
   """
   This class facilitates downloading stock data, creating dataframes, 
@@ -21,7 +31,7 @@ class StockAnalyzer:
     self.end_date = end_date
     self.stocks = {}  # Dictionary to store downloaded stock dataframes
 
-  def add_stock(self, ticker_symbol, stock_name):
+  def add_stock(self, ticker_symbol, stock_name,):
     """
     Downloads stock data for the given ticker symbol and stores it in the internal dictionary.
 
@@ -40,6 +50,9 @@ class StockAnalyzer:
     data['MA50'] = data['Open'].rolling(50).mean()
     data['MA100'] = data['Open'].rolling(100).mean()
     data['MA200'] = data['Open'].rolling(200).mean()
+    # Candle Sticks
+    
+    data['candle'] = data[['Open', 'Close']].apply(lambda x: stickColor(open=x[0], close=x[1]), axis=1)
     self.stocks[ticker_symbol] = data
     self.stock_name = stock_name
 
@@ -134,8 +147,10 @@ data_Scattered.columns = [ "['VRT']['Open']",
                           "['BWXT']['Open']"]
 scatter_matrix(data_Scattered, figsize = (20,20), hist_kwds= {'bins':250})
 
-analyzer.add_stock('ET', 'Energy Transfer LP')
-analyzer.add_stock('CSCO', 'Cisco Systems Inc.')
-analyzer.add_stock('CMCSA', 'Comcast Corp')
-analyzer.add_stock('LI', 'Li Auto')
-analyzer.add_stock('BWXT', 'BWX Technologies')
+analyzer.plot_dataframe_column( 'High',  limit_ticks_to_30days=True, ticker_symbol='VRT')
+
+
+
+
+
+
