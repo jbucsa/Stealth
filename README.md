@@ -70,4 +70,10 @@ pip install plotly
 pip install nbformat
 ```
 
-### Task No.1
+### Task No.2
+```bash
+pip install pandas
+pip install yfinance
+pip install matplotlib
+pip install seaborn 
+```

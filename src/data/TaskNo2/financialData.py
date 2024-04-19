@@ -47,6 +47,9 @@ class StockAnalyzer:
     data['MarketCap'] = data['Close'] * data['Volume']
     data['Delta'] = data['Open'] - data['Close']
     data['Change'] = data['High'] - data['Low']
+    
+    self.rev_in_mil = None
+    self.rev_in_bil = None
     # Moving Averages for Stock Price Analysis 
     data['MA05'] = data['Open'].rolling(5).mean()
     data['MA10'] = data['Open'].rolling(10).mean()
@@ -59,6 +62,8 @@ class StockAnalyzer:
     data['candle'] = data[['Open', 'Close']].apply(lambda x: stickColor(open=x[0], close=x[1]), axis=1)
     self.stocks[ticker_symbol] = data
     self.stock_name = stock_name
+    
+    
 
   def plot_dataframe_column(self, column_name, figsize=(25, 10), limit_ticks_to_30days=False, ticker_symbol=None, kind="line", x_axis="index"):
     """
@@ -97,18 +102,11 @@ class StockAnalyzer:
 analyzer = StockAnalyzer('2022-04-18', '2024-04-18')
 # 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo
 # Add stocks to analyze
-analyzer.add_stock('VRT', 'Vertiv')
-analyzer.add_stock('CCJ', 'Cameco', interval_in_minutes='60m')
-analyzer.add_stock('CAT', 'Caterpillar Inc.')
-analyzer.add_stock('FSLR', 'First Solar')
-analyzer.add_stock('BEN', 'Franklin Resources Inc.', interval_in_minutes='1d')
-analyzer.add_stock('ET', 'Energy Transfer LP')
-analyzer.add_stock('CSCO', 'Cisco Systems Inc.')
-analyzer.add_stock('CMCSA', 'Comcast Corp')
-analyzer.add_stock('LI', 'Li Auto')
-analyzer.add_stock('BWXT', 'BWX Technologies')
 
-# ... Add more stocks as needed
+# analyzer.add_stock('BEN', 'Franklin Resources Inc.', interval_in_minutes='60m')
+
+analyzer.add_stock('BEN', 'Franklin Resources Inc.', interval_in_minutes='1d')
+
 
 # Plot Volume data with limited ticks on x-axis
 analyzer.plot_dataframe_column('Volume',  limit_ticks_to_30days=True )
@@ -117,56 +115,24 @@ analyzer.plot_dataframe_column('Volume', ticker_symbol='BEN', x_axis='Date')
 analyzer.plot_dataframe_column('Close', ticker_symbol='BEN')
 analyzer.plot_dataframe_column('MarketCap', ticker_symbol='BEN')
 # Plot other data using the same method (e.g., Close, Open, High, Low, Adj Close)
-analyzer.plot_dataframe_column('Delta',  limit_ticks_to_30days=True, ticker_symbol='VRT')
+
+
 # ... Plot other columns
 
 analyzer.plot_dataframe_column('Volume',  limit_ticks_to_30days=True)
-
-analyzer.plot_dataframe_column('Close',  limit_ticks_to_30days=True, ticker_symbol='CAT')
-
-analyzer.plot_dataframe_column('Volume',  limit_ticks_to_30days=True, ticker_symbol='CAT')
-
 analyzer.stocks['BEN']
 
-# Coping a DataFrame from the analyzer function
-df_CAT = analyzer.stocks['CAT']['Open']
+# Convert to datetime and extract date
+financial_df = analyzer.stocks['BEN']
 
-# Creating a Scatter Plot
-data_Scattered = pd.concat([
-  analyzer.stocks['VRT']['Open'], 
-  analyzer.stocks['CCJ']['Open'], 
-  analyzer.stocks['CAT']['Open'], 
-  analyzer.stocks['FSLR']['Open'], 
-  analyzer.stocks['BEN']['Open'], 
-  analyzer.stocks['ET']['Open'],
-  analyzer.stocks['CSCO']['Open'], 
-  analyzer.stocks['CMCSA']['Open'],  
-  analyzer.stocks['LI']['Open'],  
-  analyzer.stocks['BWXT']['Open'] ], axis = 1)                                                             
-data_Scattered.columns = [ "['VRT']['Open']",
-                          "['CCJ']['Open']",
-                          "['CAT']['Open']",
-                          "['FSLR']['Open']",
-                          "['BEN']['Open']",
-                          "['ET']['Open']",
-                          "['CSCO']['Open']",
-                          "['CMCSA']['Open']",
-                          "['LI']['Open']",
-                          "['BWXT']['Open']"]
-scatter_matrix(data_Scattered, figsize = (20,20), hist_kwds= {'bins':250})
+# Set the date as the new index
 
-analyzer.plot_dataframe_column( 'High',  limit_ticks_to_30days=True, ticker_symbol='VRT')
+earnings_df = pd.read_csv('earnings_df.csv')
+earnings_df = earnings_df.set_index('Date')
 
+earnings_df['rev_in_bil'].plot(label='Rev in Billions', figsize=(25,10))
+plt.ylim(150, 225) 
+plt.title(f"Rev. of BEN in Biilions")
+plt.legend()
+plt.show()
 
-df_CAT  = analyzer.stocks['CAT'].copy()
-
-
-df_CAT.reset_index(inplace=True)
-
-df_CAT.head()
-
-# plt.figure(figsize=(14,5))
-# sns.set_style("ticks")
-# sns.lineplot(data=df_CAT, x="Date",y='Close',color='firebrick')
-# sns.despine()
-# plt.title("The Stock Price of Amazon",size='x-large',color='blue')

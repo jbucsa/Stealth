@@ -1,0 +1,93 @@
+[Company_Name, Tick_Symbol, Ownership:[Insiders, Mutual_Funds, Other_Institional_Investors, Public_Companies_and_Individual_Investors]]
+
+Vertiv : VRT
+    Insiders
+        4.54%
+    Mutual Funds
+        31.23%
+    Other Institional Investors
+        49.59%
+    Public Companies and Individual Investors
+        14.64%
+
+First Solar : FSLR
+    Insiders
+        0.53%
+    Mutual Funds
+        13.45% 
+    Other Institional Investors
+        12.46%
+    Public Companies and Individual Investors
+        73.56%
+
+Caterpillar Inc : CAT
+    Insiders
+        2.20%
+    Mutual Funds
+        21.30% 
+    Other Institional Investors
+        19.77%
+    Public Companies and Individual Investors
+        56.73%
+
+Franklin Resources Inc : BEN
+    Insiders
+        40.88%
+    Mutual Funds
+        13.50% 
+    Other Institional Investors
+        19.77%
+    Public Companies and Individual Investors
+        25.85%
+
+Energy Transfer LP : ET
+    Insiders
+        16.96%
+    Mutual Funds
+        05.62% 
+    Other Institional Investors
+        03.96%
+    Public Companies and Individual Investors
+        73.46%
+
+Cisco Systems Inc : CSCO
+    Insiders
+        01.77%
+    Mutual Funds
+        18.42% 
+    Other Institional Investors
+        25.87%
+    Public Companies and Individual Investors
+        53.94%
+
+Comcast Corp : CMCSA
+    Insiders
+        0.91%
+    Mutual Funds
+        30.43% 
+    Other Institional Investors
+        21.19%
+    Public Companies and Individual Investors
+        47.47%
+
+Li Auto : LI
+    Insiders
+        0.0%
+    Mutual Funds
+        03.17% 
+    Other Institional Investors
+        03.40%
+    Public Companies and Individual Investors
+        93.43%
+
+BWX Technologies : BWXT
+    Insiders
+        0.66%
+    Mutual Funds
+        34.91% 
+    Other Institional Investors
+        21.94%
+    Public Companies and Individual Investors
+        42.48%
+
+
