@@ -31,7 +31,8 @@ class StockAnalyzer:
     self.start_date = start_date
     self.end_date = end_date
     self.stocks = {}  # Dictionary to store downloaded stock dataframes
-
+    self.total_volume = {}  # Dictionary to store total volume for each stock
+    
   def add_stock(self, ticker_symbol, stock_name, interval_in_minutes='1mo'):
     """
     interval_in_minutes= 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo
@@ -43,10 +44,19 @@ class StockAnalyzer:
     data = yf.download(ticker_symbol, self.start_date, self.end_date, interval=f"{interval_in_minutes}")
     # Earnings
     
+    # if ticker_symbol not in self.total_volume:
+    #     self.total_volume[ticker_symbol] = 0
+    # self.total_volume[ticker_symbol] += data['Volume'].sum()  # Sum the volume for this download
+    
+    
     #Market Capitalisation
     data['MarketCap'] = data['Close'] * data['Volume']
     data['Delta'] = data['Open'] - data['Close']
     data['Change'] = data['High'] - data['Low']
+    
+        # Keep track of total volume for this stock
+
+
     
     self.rev_in_mil = None
     self.rev_in_bil = None
@@ -99,7 +109,7 @@ class StockAnalyzer:
     plt.show()
 
 # Time Range Input
-analyzer = StockAnalyzer('2022-04-18', '2024-04-18')
+analyzer = StockAnalyzer('2022-04-20', '2024-04-20')
 # 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo
 # Add stocks to analyze
 
@@ -123,8 +133,8 @@ analyzer.plot_dataframe_column('Volume',  limit_ticks_to_30days=True)
 analyzer.stocks['BEN']
 
 # Convert to datetime and extract date
-financial_df = analyzer.stocks['BEN']
-
+financial__PerDay_df = analyzer.stocks[].copy()
+financial__PerMon_df = analyzer.stocks['BEN'].copy()
 # Set the date as the new index
 
 earnings_df = pd.read_csv('earnings_df.csv')
@@ -136,3 +146,33 @@ plt.title(f"Rev. of BEN in Biilions")
 plt.legend()
 plt.show()
 
+financial__PerDay_df['Close'].plot(label='Close Price', figsize=(25,10))
+financial__PerMon_df['Close'].plot(label='Close Price', figsize=(25,10))
+plt.ylim(0, 35) 
+plt.xlim('2022-04-20', '2024-04-20') 
+plt.title(f"Stock Price at Close")
+plt.legend()
+plt.show()
+
+financial__PerDay_df['MarketCap'].plot(label='Market Cap Per Day', figsize=(25,10))
+financial__PerMon_df['MarketCap'].plot(label='Market Cap Month', figsize=(25,10))
+plt.xlim('2022-04-20', '2024-04-20') 
+plt.ylim(0) 
+plt.title(f"Market Cap")
+plt.legend()
+plt.show()
+
+
+
+plt.ylim(0, 35) 
+plt.title(f"Volume")
+plt.legend()
+plt.show()
+
+
+# Pie chart for ownership
+
+pieChartLabels = 'Insiders', 'Mutual Funds', 'Other Institional Investors', 'Public Companies and Individual Investors'
+sizes = [40.88, 13.50, 19.77, 25.85]
+fig, ax = plt.subplots()
+ax.pie(sizes, labels=pieChartLabels, autopct='%1.1f%%')
