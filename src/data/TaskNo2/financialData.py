@@ -3,6 +3,7 @@ import yfinance as yf
 import matplotlib.pyplot as plt
 from matplotlib.dates import DateFormatter, MonthLocator
 from pandas.plotting import scatter_matrix
+from pandas import df_to_print
 import seaborn as sns; sns.set()
 
 # Candle Stick Property
@@ -75,7 +76,7 @@ class StockAnalyzer:
     
     
 
-  def plot_dataframe_column(self, column_name, figsize=(25, 10), limit_ticks_to_30days=False, ticker_symbol=None, kind="line", x_axis="index"):
+  def plot_dataframe_column(self, column_name, figsize=(10, 5), limit_ticks_to_30days=False, ticker_symbol=None, kind="line", x_axis="index"):
     """
     Generates a line plot for the specified column across all downloaded stocks.
     Optionally limits x-axis ticks to 30-day intervals.
@@ -151,14 +152,14 @@ except (ValueError, pd.errors.ParserError):
 
 
 
-earnings_df['rev_in_bil'].plot(label='Rev in Billions', figsize=(25,10))
+earnings_df['rev_in_bil'].plot(label='Rev in Billions', figsize=(10,5))
 plt.ylim(150, 225) 
 plt.title(f"Rev. of BEN in Biilions")
 plt.legend()
 plt.show()
 
-financial_PerDay_df['Close'].plot(label='Close Price', figsize=(25,10))
-financial_PerMon_df['Close'].plot(label='Close Price', figsize=(25,10))
+financial_PerDay_df['Close'].plot(label='Close Price', figsize=(10,5))
+financial_PerMon_df['Close'].plot(label='Close Price', figsize=(10,5))
 plt.ylim(0, 35) 
 plt.xlim('2022-04-20', '2024-04-20') 
 plt.title(f"Stock Price at Close")
@@ -166,9 +167,9 @@ plt.legend()
 plt.show()
 
 
-financial_PerDay_df['Close'].plot(label='Close Price Per Day', figsize=(25,10))
-financial_PerMon_df['Close'].plot(label='Close Price Month', figsize=(25,10))
-earnings_df['rev_in_bil'].plot(label='Gross Profit [In Billions]', figsize=(25,10))
+financial_PerDay_df['Close'].plot(label='Close Price Per Day', figsize=(10,5))
+financial_PerMon_df['Close'].plot(label='Close Price Month', figsize=(10,5))
+earnings_df['rev_in_bil'].plot(label='Gross Profit [In Billions]', figsize=(10,5))
 plt.xlim('2022-04-20', '2024-04-20') 
 plt.ylim(0, 225) 
 
@@ -176,7 +177,7 @@ plt.ylim(0, 225)
 y1 = financial_PerDay_df['Close']
 y3 = financial_PerMon_df['Close']
 y2 = earnings_df['rev_in_bil']
-plt.figure(figsize=(25, 10))
+plt.figure(figsize=(10, 5))
 
 # Create the primary axes and plot the first line
 ax1 = plt.axes()
@@ -216,3 +217,24 @@ fig, ax = plt.subplots()
 ax.pie(sizes, labels=pieChartLabels, autopct='%1.1f%%')
 
 
+insiderTrades = pd.read_html('http://openinsider.com/search?q=BEN')
+
+
+insiderTrades_df = insiderTrades[11].copy()
+insiderTrades_df.index.dtype
+
+insiderTrades_df.columns[1:12]
+
+
+
+insiderTrades_df_Convert = pd.DataFrame(insiderTrades_df)
+selected_columns = [ 'Ticker',  'Title', 'Price', 'Qty', 'Owned', 'Value']
+print(insiderTrades_df[selected_columns])
+
+# Using pandas.Styler (assuming pandas is imported)
+print(df_to_print.style.set_properties(**{'align': 'center'}).to_string())
+
+# Using tabulate (install with `pip install tabulate`)
+df_to_print = insiderTrades_df[selected_columns]
+insiderTrades_df.to_csv('insider_Sales_df.csv', index=True)
+print(df_to_print.to_string())
