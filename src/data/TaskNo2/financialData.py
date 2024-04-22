@@ -115,7 +115,7 @@ analyzer = StockAnalyzer('2022-04-20', '2024-04-20')
 
 # analyzer.add_stock('BEN', 'Franklin Resources Inc.', interval_in_minutes='60m')
 
-analyzer.add_stock('BEN', 'Franklin Resources Inc.', interval_in_minutes='1d')
+analyzer.add_stock('BEN', 'Franklin Resources Inc.', interval_in_minutes='1mo')
 
 
 # Plot Volume data with limited ticks on x-axis
@@ -133,12 +133,23 @@ analyzer.plot_dataframe_column('Volume',  limit_ticks_to_30days=True)
 analyzer.stocks['BEN']
 
 # Convert to datetime and extract date
-financial__PerDay_df = analyzer.stocks[].copy()
-financial__PerMon_df = analyzer.stocks['BEN'].copy()
+financial_PerDay_df = analyzer.stocks['BEN'].copy()
+financial_PerMon_df = analyzer.stocks['BEN'].copy()
 # Set the date as the new index
+financial_PerMon_df.index.dtype
+
 
 earnings_df = pd.read_csv('earnings_df.csv')
 earnings_df = earnings_df.set_index('Date')
+earnings_df = earnings_df.sort_index(ascending=True)
+earnings_df.index.dtype
+# Do this to convert the index type from Earning to equal that of the Yahoo Data
+try:
+  earnings_df.index = pd.to_datetime(earnings_df.index)
+except (ValueError, pd.errors.ParserError):
+  print("Warning: Index values could not be parsed as datetime format.")
+
+
 
 earnings_df['rev_in_bil'].plot(label='Rev in Billions', figsize=(25,10))
 plt.ylim(150, 225) 
@@ -146,27 +157,54 @@ plt.title(f"Rev. of BEN in Biilions")
 plt.legend()
 plt.show()
 
-financial__PerDay_df['Close'].plot(label='Close Price', figsize=(25,10))
-financial__PerMon_df['Close'].plot(label='Close Price', figsize=(25,10))
+financial_PerDay_df['Close'].plot(label='Close Price', figsize=(25,10))
+financial_PerMon_df['Close'].plot(label='Close Price', figsize=(25,10))
 plt.ylim(0, 35) 
 plt.xlim('2022-04-20', '2024-04-20') 
 plt.title(f"Stock Price at Close")
 plt.legend()
 plt.show()
 
-financial__PerDay_df['MarketCap'].plot(label='Market Cap Per Day', figsize=(25,10))
-financial__PerMon_df['MarketCap'].plot(label='Market Cap Month', figsize=(25,10))
+
+financial_PerDay_df['Close'].plot(label='Close Price Per Day', figsize=(25,10))
+financial_PerMon_df['Close'].plot(label='Close Price Month', figsize=(25,10))
+earnings_df['rev_in_bil'].plot(label='Gross Profit [In Billions]', figsize=(25,10))
 plt.xlim('2022-04-20', '2024-04-20') 
-plt.ylim(0) 
-plt.title(f"Market Cap")
-plt.legend()
-plt.show()
+plt.ylim(0, 225) 
 
 
+y1 = financial_PerDay_df['Close']
+y3 = financial_PerMon_df['Close']
+y2 = earnings_df['rev_in_bil']
+plt.figure(figsize=(25, 10))
 
-plt.ylim(0, 35) 
-plt.title(f"Volume")
-plt.legend()
+# Create the primary axes and plot the first line
+ax1 = plt.axes()
+plt.plot(y1, label="Close Price Per Day", color='green', alpha=0.7)
+plt.plot(y3, label="Close Price Per Month", color='navy', alpha=0.7)
+# Create a twin axes for the second line and plot it with a red color
+ax2 = ax1.twinx()
+plt.plot(y2, label="Gross Profit [In Billions]", color='red', alpha=0.7)  # Adjust alpha for transparency
+plt.xlabel("Date")
+# Set y-axis limits for each axis independently
+plt.ylim( 15, 35)  # Adjust limits for close price (y1)
+plt.ylim( 185, 205)  # Adjust limits for revenue (y2) with some buffer
+
+# Customize the plot (optional)
+plt.xlabel("Date")
+plt.ylabel("Close Price", color='black')  # Set label for primary y-axis (without keyword argument)
+
+# Only show legend for primary y-axis
+handles1, labels1 = ax1.get_legend_handles_labels()
+handles2, labels2 = ax2.get_legend_handles_labels()
+plt.legend(handles2, labels2, loc="upper left")
+plt.legend(handles1, labels1, loc="upper right" )
+
+plt.ylabel('Gross Profit (Billions)', color='black', labelpad=10)  # Set label for secondary y-axis with padding
+plt.xlabel("Date")
+plt.title("Close Price vs. Gross Profit")
+
+# Display the plot
 plt.show()
 
 
@@ -176,3 +214,5 @@ pieChartLabels = 'Insiders', 'Mutual Funds', 'Other Institional Investors', 'Pub
 sizes = [40.88, 13.50, 19.77, 25.85]
 fig, ax = plt.subplots()
 ax.pie(sizes, labels=pieChartLabels, autopct='%1.1f%%')
+
+
