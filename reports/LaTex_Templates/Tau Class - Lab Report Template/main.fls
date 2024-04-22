@@ -667,7 +667,6 @@ INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvro8t.tfm
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr8t.tfm
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8t.tfm
-OUTPUT main.toc
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\tfm\public\stix2-type1\t1-stix2textsc.tfm
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\tfm\public\stix2-type1\t1-stix2text.tfm
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\tfm\public\stix2-type1\t1-stix2text.tfm
@@ -690,6 +689,7 @@ INPUT .\images\OwnershipPieChart.png
 INPUT .\images\OwnershipPieChart.png
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr8t.tfm
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8t.tfm
+INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\tfm\public\stix2-type1\t1-stix2text-bold.tfm
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\helvetic\phvb8t.vf
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8r.tfm
 INPUT C:\Users\Bucsa\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
@@ -754,7 +754,6 @@ INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\tex\latex\fontawesome5\ufonta
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\tfm\public\fontawesome5\fa5free1regular.tfm
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\fontawesome5\fa5free1.enc
 INPUT main.aux
-INPUT main.run.xml
 OUTPUT main.run.xml
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\type1\public\fontawesome5\FontAwesome5Free-Regular.pfb
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\type1\public\fontawesome5\FontAwesome5Free-Regular.pfb
