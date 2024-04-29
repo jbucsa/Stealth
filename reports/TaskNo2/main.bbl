@@ -1,0 +1,173 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{ynt/global//global/global/global}
+    \entry{franklin-resources-inc-2023}{report}{}{}
+      \name{author}{1}{}{%
+        {{hash=95109e409be8927c5d8425413280ed6e}{%
+           family={Franklin\bibnamedelima Resources},
+           familyi={F\bibinitperiod\bibinitdelim R\bibinitperiod},
+           given={Inc.},
+           giveni={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{95109e409be8927c5d8425413280ed6e}
+      \strng{fullhash}{95109e409be8927c5d8425413280ed6e}
+      \strng{fullhashraw}{95109e409be8927c5d8425413280ed6e}
+      \strng{bibnamehash}{95109e409be8927c5d8425413280ed6e}
+      \strng{authorbibnamehash}{95109e409be8927c5d8425413280ed6e}
+      \strng{authornamehash}{95109e409be8927c5d8425413280ed6e}
+      \strng{authorfullhash}{95109e409be8927c5d8425413280ed6e}
+      \strng{authorfullhashraw}{95109e409be8927c5d8425413280ed6e}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{Franklin Resources, Inc. 2023 annual report}}
+      \field{type}{techreport}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://s201.q4cdn.com/562074409/files/doc_financials/2023/ar/Franklin-Resources-2023-Annual_10-K.pdf
+      \endverb
+      \verb{url}
+      \verb https://s201.q4cdn.com/562074409/files/doc_financials/2023/ar/Franklin-Resources-2023-Annual_10-K.pdf
+      \endverb
+    \endentry
+    \entry{yahoo-finance-2024}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=f84671263e4caef5426fe17966c5c4c9}{%
+           family={Finance},
+           familyi={F\bibinitperiod},
+           given={Yahoo},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{f84671263e4caef5426fe17966c5c4c9}
+      \strng{fullhash}{f84671263e4caef5426fe17966c5c4c9}
+      \strng{fullhashraw}{f84671263e4caef5426fe17966c5c4c9}
+      \strng{bibnamehash}{f84671263e4caef5426fe17966c5c4c9}
+      \strng{authorbibnamehash}{f84671263e4caef5426fe17966c5c4c9}
+      \strng{authornamehash}{f84671263e4caef5426fe17966c5c4c9}
+      \strng{authorfullhash}{f84671263e4caef5426fe17966c5c4c9}
+      \strng{authorfullhashraw}{f84671263e4caef5426fe17966c5c4c9}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{Franklin Resources, Inc. (BEN)}}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://finance.yahoo.com/quote/BEN?.tsrc=fin-srch
+      \endverb
+      \verb{url}
+      \verb https://finance.yahoo.com/quote/BEN?.tsrc=fin-srch
+      \endverb
+    \endentry
+    \entry{tip-ranks-2024}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=e42516cae911b9a0f24d221bb17a6f7d}{%
+           family={Ranks},
+           familyi={R\bibinitperiod},
+           given={Tip},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{e42516cae911b9a0f24d221bb17a6f7d}
+      \strng{fullhash}{e42516cae911b9a0f24d221bb17a6f7d}
+      \strng{fullhashraw}{e42516cae911b9a0f24d221bb17a6f7d}
+      \strng{bibnamehash}{e42516cae911b9a0f24d221bb17a6f7d}
+      \strng{authorbibnamehash}{e42516cae911b9a0f24d221bb17a6f7d}
+      \strng{authornamehash}{e42516cae911b9a0f24d221bb17a6f7d}
+      \strng{authorfullhash}{e42516cae911b9a0f24d221bb17a6f7d}
+      \strng{authorfullhashraw}{e42516cae911b9a0f24d221bb17a6f7d}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{4}
+      \field{title}{{Who owns Franklin Resources? BEN Stock Ownership}}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://www.tipranks.com/stocks/ben/ownership
+      \endverb
+      \verb{url}
+      \verb https://www.tipranks.com/stocks/ben/ownership
+      \endverb
+    \endentry
+    \entry{open-insider-no-date}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=04d7eec83137c0acc55fd4abcf943bba}{%
+           family={Insider},
+           familyi={I\bibinitperiod},
+           given={Open},
+           giveni={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{04d7eec83137c0acc55fd4abcf943bba}
+      \strng{fullhash}{04d7eec83137c0acc55fd4abcf943bba}
+      \strng{fullhashraw}{04d7eec83137c0acc55fd4abcf943bba}
+      \strng{bibnamehash}{04d7eec83137c0acc55fd4abcf943bba}
+      \strng{authorbibnamehash}{04d7eec83137c0acc55fd4abcf943bba}
+      \strng{authornamehash}{04d7eec83137c0acc55fd4abcf943bba}
+      \strng{authorfullhash}{04d7eec83137c0acc55fd4abcf943bba}
+      \strng{authorfullhashraw}{04d7eec83137c0acc55fd4abcf943bba}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{BEN - Franklin Resources Inc - SEC Form 4 Insider Trading Screener}}
+      \verb{urlraw}
+      \verb http://openinsider.com/search?q=ben
+      \endverb
+      \verb{url}
+      \verb http://openinsider.com/search?q=ben
+      \endverb
+    \endentry
+    \entry{alpha-vantage-2024}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=4dd9ea5272f93564f412e1b02d275b8c}{%
+           family={Vantage},
+           familyi={V\bibinitperiod},
+           given={Alpha},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Alpha Vantage}%
+      }
+      \strng{namehash}{4dd9ea5272f93564f412e1b02d275b8c}
+      \strng{fullhash}{4dd9ea5272f93564f412e1b02d275b8c}
+      \strng{fullhashraw}{4dd9ea5272f93564f412e1b02d275b8c}
+      \strng{bibnamehash}{4dd9ea5272f93564f412e1b02d275b8c}
+      \strng{authorbibnamehash}{4dd9ea5272f93564f412e1b02d275b8c}
+      \strng{authornamehash}{4dd9ea5272f93564f412e1b02d275b8c}
+      \strng{authorfullhash}{4dd9ea5272f93564f412e1b02d275b8c}
+      \strng{authorfullhashraw}{4dd9ea5272f93564f412e1b02d275b8c}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{Franklin Resources Inc. [Stock: BEN] Quarterly earnings}}
+      \verb{urlraw}
+      \verb https://www.alphavantage.co/
+      \endverb
+      \verb{url}
+      \verb https://www.alphavantage.co/
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
