@@ -1,29 +1,3 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% --------------------------------------------------------
-% Tau
-% LaTeX Class
-% Version 2.3.1 (10/04/2024)
-%
-% Author: 
-% Guillermo Jimenez (memo.notess1@gmail.com)
-% --------------------------------------------------------
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% --------------------------------------------------------
-% You may modify 'tau.cls' file according to your
-% needs and preferences. This LaTeX class file defines 
-% the document layout and behavior.
-% --------------------------------------------------------
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% --------------------------------------------------------
-% 						 WARNING!
-% --------------------------------------------------------
-% It is important to proceed with caution and ensure that 
-% any modifications made are compatible with LaTeX 
-% syntax and conventions to avoid errors or unexpected 
-% behavior in the document compilation process.
-% --------------------------------------------------------
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 %----------------------------------------------------------
 % CLASS CONFIGURATION
 %----------------------------------------------------------

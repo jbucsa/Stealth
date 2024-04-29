@@ -98,7 +98,7 @@ venv/
 venv
 
 # LaTex Supporting Files
-
+main.log
 main.aux
 main.bbl
 main.bcf
@@ -108,3 +108,13 @@ main.fls
 main.run.xml
 main.synctex.gz
 main.toc
+reports/TaskNo2/main.aux
+reports/TaskNo2/main.bbl
+reports/TaskNo2/main.bcf
+reports/TaskNo2/main.blg
+reports/TaskNo2/main.fdb_latexmk
+reports/TaskNo2/main.fls
+reports/TaskNo2/main.run.xml
+reports/TaskNo2/main.synctex.gz
+reports/TaskNo2/main.toc
+reports/TaskNo2/main.log
