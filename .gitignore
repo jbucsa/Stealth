@@ -96,3 +96,15 @@ target/
 *.venv
 venv/
 venv
+
+# LaTex Supporting Files
+
+main.aux
+main.bbl
+main.bcf
+main.blg
+main.fdb_latexmk
+main.fls
+main.run.xml
+main.synctex.gz
+main.toc
