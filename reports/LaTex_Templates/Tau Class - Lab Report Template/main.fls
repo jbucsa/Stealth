@@ -667,6 +667,7 @@ INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvro8t.tfm
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvr8t.tfm
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\helvetic\phvb8t.tfm
+OUTPUT main.toc
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\tfm\public\stix2-type1\t1-stix2textsc.tfm
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\tfm\public\stix2-type1\t1-stix2text.tfm
 INPUT C:\Users\Bucsa\AppData\Local\Programs\MiKTeX\fonts\tfm\public\stix2-type1\t1-stix2text.tfm

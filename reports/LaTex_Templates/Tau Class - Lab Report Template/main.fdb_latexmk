@@ -1,12 +1,11 @@
 # Fdb version 4
-["biber main"] 0 "main.bcf" "main.bbl" "main" 0 -1
-  "main.bcf" 1713805815 108646 e6c2494918dcdd975183c0753e3591e8 "pdflatex"
-  "tau.bib" 1713760687 354 d3dc3130601c7660959c7769233e86e7 ""
+["biber main"] 1714356377.43443 "main.bcf" "main.bbl" "main" 1714356624.77902 0
+  "main.bcf" 1714356623 108646 e6c2494918dcdd975183c0753e3591e8 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1713805810.84085 "c:/Users/Bucsa/Code/Stealth/reports/LaTex_Templates/Tau Class - Lab Report Template/main.tex" "main.pdf" "main" 1713805816.65518 2
+["pdflatex"] 1714356615.14565 "c:/Users/Bucsa/Code/Stealth/reports/LaTex_Templates/Tau Class - Lab Report Template/main.tex" "main.pdf" "main" 1714356624.78008 2
   "C:/Users/Bucsa/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1713557408 87510 b3766c2e1f241588f88cba4a8bf1b25f ""
   "C:/Users/Bucsa/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1713499211 24236047 b4b09a0682ccfa75c2da4fe709ebfdb2 ""
   "C:/Users/Bucsa/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -325,7 +324,7 @@
   "C:/Users/Bucsa/AppData/Local/Programs/MiKTeX/tex/latex/xurl/xurl.sty" 1641733940 4675 e4b8c405820368c2dfb03526e16d725a ""
   "C:/Users/Bucsa/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-abspage.sty" 1695383086 2269 4fe6fb3396214c91f164d45faf9bec45 ""
   "C:/Users/Bucsa/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-base.sty" 1695383086 20785 f7d1133a287929598a897c93f8f4c44b ""
-  "c:/Users/Bucsa/Code/Stealth/reports/LaTex_Templates/Tau Class - Lab Report Template/main.tex" 1713805802 12870 1a08d387e67a94fde079b6102e3940f2 ""
+  "c:/Users/Bucsa/Code/Stealth/reports/LaTex_Templates/Tau Class - Lab Report Template/main.tex" 1714353906 12868 dd473d4d8a1b5497a22a9658a85b8f74 ""
   "images/CloseDataSet1d.png" 1713751384 42354 0116d1cd4c856875334593bbe12c29af ""
   "images/CloseDataSet1dvs1mo.png" 1713751403 55919 492e50435fde0801e5a1a247a496fa2c ""
   "images/CloseDataSet1mo.png" 1713751359 32104 a09d9faa6323689735737047e432ade1 ""
@@ -333,9 +332,10 @@
   "images/EarningByQt.png" 1713751493 24025 35e8baa53a3598f7a647b646e8ce98e8 ""
   "images/InsiderTrades.jpg" 1713757273 240739 6f17e0cf681a3f3d75858c879934bbdf ""
   "images/OwnershipPieChart.png" 1713734845 30194 a78ecfe03c857ec040f1ebea74d1b89d ""
-  "main.aux" 1713805815 11987 e4d24c449ce46c48c4d8049d6c0aff87 "pdflatex"
-  "main.bbl" 1713763415 486 76d65a242ec496c9b4361af646ff12cb "biber main"
-  "main.tex" 1713805802 12870 1a08d387e67a94fde079b6102e3940f2 ""
+  "main.aux" 1714356623 11987 e4d24c449ce46c48c4d8049d6c0aff87 "pdflatex"
+  "main.bbl" 1714356463 486 76d65a242ec496c9b4361af646ff12cb "biber main"
+  "main.tex" 1714353906 12868 dd473d4d8a1b5497a22a9658a85b8f74 ""
+  "main.toc" 1714356623 1539 1a694671d573141c8794187f52df85e8 "pdflatex"
   "tau.cls" 1713550218 14876 db7f253066edac73fd6b603d254e8a6f ""
   "tauenvs.sty" 1713550218 3347 7feacafc40a4ef72d49322cfc31d2838 ""
   (generated)
@@ -344,4 +344,5 @@
   "main.log"
   "main.pdf"
   "main.run.xml"
+  "main.toc"
   (rewritten before read)
