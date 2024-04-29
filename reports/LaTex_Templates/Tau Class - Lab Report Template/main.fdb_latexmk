@@ -1,11 +1,12 @@
 # Fdb version 4
-["biber main"] 1714356377.43443 "main.bcf" "main.bbl" "main" 1714356624.77902 0
-  "main.bcf" 1714356623 108646 e6c2494918dcdd975183c0753e3591e8 "pdflatex"
+["biber main"] 0 "main.bcf" "main.bbl" "main" 0 -1
+  "main.bcf" 1714407970 108646 e6c2494918dcdd975183c0753e3591e8 "pdflatex"
+  "tau.bib" 1714360960 825 1175c8e1452a18ed5d80fd6935b313e0 ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1714356615.14565 "c:/Users/Bucsa/Code/Stealth/reports/LaTex_Templates/Tau Class - Lab Report Template/main.tex" "main.pdf" "main" 1714356624.78008 2
+["pdflatex"] 1714407962.05102 "c:/Users/Bucsa/Code/Stealth/reports/LaTex_Templates/Tau Class - Lab Report Template/main.tex" "main.pdf" "main" 1714407972.15957 2
   "C:/Users/Bucsa/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1713557408 87510 b3766c2e1f241588f88cba4a8bf1b25f ""
   "C:/Users/Bucsa/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1713499211 24236047 b4b09a0682ccfa75c2da4fe709ebfdb2 ""
   "C:/Users/Bucsa/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -332,10 +333,10 @@
   "images/EarningByQt.png" 1713751493 24025 35e8baa53a3598f7a647b646e8ce98e8 ""
   "images/InsiderTrades.jpg" 1713757273 240739 6f17e0cf681a3f3d75858c879934bbdf ""
   "images/OwnershipPieChart.png" 1713734845 30194 a78ecfe03c857ec040f1ebea74d1b89d ""
-  "main.aux" 1714356623 11987 e4d24c449ce46c48c4d8049d6c0aff87 "pdflatex"
+  "main.aux" 1714407970 11987 e4d24c449ce46c48c4d8049d6c0aff87 "pdflatex"
   "main.bbl" 1714356463 486 76d65a242ec496c9b4361af646ff12cb "biber main"
   "main.tex" 1714353906 12868 dd473d4d8a1b5497a22a9658a85b8f74 ""
-  "main.toc" 1714356623 1539 1a694671d573141c8794187f52df85e8 "pdflatex"
+  "main.toc" 1714407970 1539 1a694671d573141c8794187f52df85e8 "pdflatex"
   "tau.cls" 1713550218 14876 db7f253066edac73fd6b603d254e8a6f ""
   "tauenvs.sty" 1713550218 3347 7feacafc40a4ef72d49322cfc31d2838 ""
   (generated)
