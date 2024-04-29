@@ -136,7 +136,7 @@ Include the following information at minimum:
 
 
 ### Solution
-
+[Link to Full Stock Report for Task No. 2](/reports/TaskNo2/Bucsa_Justin_Franklin_Resources_Report.pdf)
 !["Task No 2 Solution Page 1"](/READMD_Asset/TaskNo2/ReportPage1.jpg)
 !["Task No 2 Solution Page 2"](/READMD_Asset/TaskNo2/ReportPage2.jpg)
 <!-- [Task No 2 Solution Page 3](/READMD_Asset/TaskNo2/ReportPage3.pdf) -->
