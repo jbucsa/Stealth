@@ -97,16 +97,16 @@ class StockAnalyzer:
 analyzer = StockAnalyzer('2022-04-18', '2024-04-18')
 # 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo, 3mo
 # Add stocks to analyze
-analyzer.add_stock('VRT', 'Vertiv')
-analyzer.add_stock('CCJ', 'Cameco', interval_in_minutes='60m')
-analyzer.add_stock('CAT', 'Caterpillar Inc.')
-analyzer.add_stock('FSLR', 'First Solar')
+analyzer.add_stock('VRT', 'Vertiv', interval_in_minutes='1d')
+analyzer.add_stock('CCJ', 'Cameco', interval_in_minutes='1d')
+analyzer.add_stock('CAT', 'Caterpillar Inc.', interval_in_minutes='1d')
+analyzer.add_stock('FSLR', 'First Solar', interval_in_minutes='1d')
 analyzer.add_stock('BEN', 'Franklin Resources Inc.', interval_in_minutes='1d')
-analyzer.add_stock('ET', 'Energy Transfer LP')
-analyzer.add_stock('CSCO', 'Cisco Systems Inc.')
-analyzer.add_stock('CMCSA', 'Comcast Corp')
-analyzer.add_stock('LI', 'Li Auto')
-analyzer.add_stock('BWXT', 'BWX Technologies')
+analyzer.add_stock('ET', 'Energy Transfer LP', interval_in_minutes='1d')
+analyzer.add_stock('CSCO', 'Cisco Systems Inc.', interval_in_minutes='1d')
+analyzer.add_stock('CMCSA', 'Comcast Corp', interval_in_minutes='1d')
+analyzer.add_stock('LI', 'Li Auto', interval_in_minutes='1d')
+analyzer.add_stock('BWXT', 'BWX Technologies', interval_in_minutes='1d')
 
 # ... Add more stocks as needed
 
@@ -154,6 +154,30 @@ data_Scattered.columns = [ "['VRT']['Open']",
                           "['LI']['Open']",
                           "['BWXT']['Open']"]
 scatter_matrix(data_Scattered, figsize = (20,20), hist_kwds= {'bins':250})
+
+# Stock that appear related
+# VRT & CAT, ET, BWXT 
+# CAT & ET
+# ET & CAT, BWXT
+# BWXT & VRT, CAT, ET
+
+analyzer.plot_dataframe_column( 'Close', ticker_symbol='VRT')
+analyzer.plot_dataframe_column( 'Close', ticker_symbol='CAT')
+analyzer.plot_dataframe_column( 'Close', ticker_symbol='ET')
+analyzer.plot_dataframe_column( 'Close', ticker_symbol='BWXT')
+
+# From here VRT and BWXT appear to have the most in common
+analyzer.plot_dataframe_column( 'Close', ticker_symbol='BWXT')
+analyzer.plot_dataframe_column( 'Close', ticker_symbol='VRT')
+
+"""
+Noted Findings:
+  Based on recent news, it appears Vertiv and BWX Technologies are collaborating in the nuclear power industry, specifically involving small modular reactors (SMRs).  BWXT was named the first qualified supplier for GE Vernova's nuclear business' supplier group, which is focused on deploying the BWRX-300 SMR [BWXT Named First Member of GE Vernova Nuclear's Small Modular Reactor Supplier Group]. While the exact nature of their collaboration isn't explicitly stated, it suggests BWX Technologies will likely supply components or materials for the BWRX-300 reactors, and Vertiv's expertise might be relevant in areas like thermal management for these nuclear reactors.
+
+This is just based on recent news, and more information might be available on the companies' websites or through further industry reports.
+"""
+
+
 
 analyzer.plot_dataframe_column( 'High',  limit_ticks_to_30days=True, ticker_symbol='VRT')
 
