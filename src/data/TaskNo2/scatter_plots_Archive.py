@@ -178,3 +178,96 @@ np.corrcoef( analyzer.stocks['CAT']['Close'],
 np.corrcoef(analyzer.stocks['CSCO']['Close'],  
   analyzer.stocks['BEN']['Close'] )
 
+
+
+class StockScatterAnalyzer:
+  """
+  This class facilitates generating scatter plots and calculating correlation coefficients 
+  for stock data from a StockAnalyzer object.
+  """
+
+  def __init__(self, analyzer):
+    """
+    Initializes the StockScatterAnalyzer with a StockAnalyzer object.
+
+    Args:
+        analyzer (StockAnalyzer): The StockAnalyzer object containing downloaded stock data.
+    """
+    self.analyzer = analyzer
+    self.default_column = 'Close'  # Default column to show on the scatter plot
+
+  def plot_scatter_correlation(self, selected_stocks=None, column=None, axes=None):
+    """
+    Generates a scatter matrix for selected stocks with a specified column.
+
+    Args:
+        selected_stocks (list, optional): 
+          List of ticker symbols for specific stocks to plot. 
+          Defaults to all stocks in the StockAnalyzer object.
+        column (str, optional): 
+          The specific column to use for the scatter plot. 
+          Defaults to the default_column ('Close').
+        axes (matplotlib.axes._axes.Axes, optional): 
+          A collection of matplotlib subplots for the scatter matrix.
+          Defaults to None.
+    """
+    # Select data for plotting based on selected stocks
+    if selected_stocks is None:
+      data_to_plot = self.analyzer.stocks
+    else:
+      data_to_plot = {symbol: data for symbol, data in self.analyzer.stocks.items() if symbol in selected_stocks}
+
+    # Extract data as DataFrame, considering user-specified column
+    column_to_use = column if column is not None else self.default_column
+    data_list = [data[column_to_use] for symbol, data in data_to_plot.items()]
+    data_Scattered = pd.concat(data_list, axis=1, keys=data_to_plot.keys())
+
+    # Create figure and subplots with desired layout (if axes is None)
+    if axes is None:
+      fig, axes = plt.subplots(len(data_Scattered.columns), len(data_Scattered.columns), figsize=(20, 20))
+
+    # Create scatter matrix
+    matrix = scatter_matrix(data_Scattered, figsize=(20, 20), alpha=0.8, diagonal='hist', hist_kwds={'bins': 250})
+
+     # Create scatter plots using axes (replace with your specific logic)
+    for i in range(len(data_Scattered.columns)):
+        for j in range(len(data_Scattered.columns)):
+            if i < j:  # Skip diagonal plots (optional for upper triangle)
+                axes[i, j].scatter(data_Scattered.iloc[:, i], data_Scattered.iloc[:, j])
+    
+    # Calculate correlation matrix
+    correlation_matrix = np.corrcoef(data_Scattered.values.T)
+
+    # Find a non-1 correlation value (excluding the diagonal)
+    found_value = None
+    for i in range(len(correlation_matrix)):
+      for j in range(len(correlation_matrix)):
+        if i != j and correlation_matrix[i, j] != 1:
+          found_value = correlation_matrix[i, j]
+          break  # Stop searching after finding one non-1 value
+      if found_value is not None:
+        break  # Exit outer loop if found
+
+    # Loop through subplots and add correlation coefficient (if found)
+    for i, j in zip(*np.triu_indices_from(matrix, k=1)):
+        ax = axes[i, j]  # Access subplot axes from passed axes object
+        if found_value is not None:
+            corr_value = found_value
+        else:
+            corr_value = "No significant correlation found"
+        ax.annotate(f"{corr_value:.2f}", xy=(0.8, 0.8), xycoords='axes fraction', ha='center', va='center')
+
+
+    plt.suptitle(f'Scatter Matrix for {column}',fontsize=12)
+    plt.show()
+
+
+
+scatter_analyzer = StockScatterAnalyzer(analyzer)
+
+# Plot scatter matrix for all stocks (default 'Close' column)
+scatter_analyzer.plot_scatter_correlation()
+
+# Plot scatter matrix for specific stocks with a different column ('Open')
+selected_stocks = ['VRT', 'CAT', 'ET']
+scatter_analyzer.plot_scatter_correlation(selected_stocks, column='Open')
