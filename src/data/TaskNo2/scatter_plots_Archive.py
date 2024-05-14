@@ -112,6 +112,29 @@ analyzer.add_stock('CMCSA', 'Comcast Corp', interval_in_minutes='1d')
 analyzer.add_stock('LI', 'Li Auto', interval_in_minutes='1d')
 analyzer.add_stock('BWXT', 'BWX Technologies', interval_in_minutes='1d')
 
+
+def plot_scatter_correlation(data):
+  """
+  Generates a scatter matrix with correlation coefficients displayed on top of each plot.
+
+  Args:
+      data (pandas.DataFrame): The DataFrame containing stock data for multiple stocks.
+  """
+  # Calculate correlation matrix using numpy.corrcoef
+  correlation_matrix = np.corrcoef(data.values.T)
+
+  # Create scatter matrix with lower triangle plots
+  matrix = scatter_matrix(data, figsize=(20, 20), alpha=0.8, diagonal='hist', hist_kwds={'bins': 250})
+
+  # Loop through each subplot and add correlation coefficient as annotation
+  for i, j in zip(*np.triu_indices_from(matrix, k=1)):
+    ax = matrix.axes[i, j]
+    corr_value = correlation_matrix[i, j]
+    ax.annotate(f"{corr_value:.2f}", xy=(0.8, 0.8), xycoords='axes fraction', ha='center', va='center')
+
+  plt.suptitle('Scatter Matrix with Correlation Coefficients',fontsize=12)
+  plt.show()
+
 # Creating a Scatter Plot
 data_Scattered = pd.concat([
   analyzer.stocks['VRT']['Open'], 
@@ -137,14 +160,21 @@ data_Scattered.columns = [ "['VRT']['Open']",
 scatter_matrix(data_Scattered, figsize = (20,20), hist_kwds= {'bins':250})
 
 
+plot_scatter_correlation(data_Scattered)
+
+
 np.corrcoef( analyzer.stocks['VRT']['Close'], 
   analyzer.stocks['CAT']['Close'])
+
 np.corrcoef( analyzer.stocks['VRT']['Close'], 
   analyzer.stocks['ET']['Close'] )
+
 np.corrcoef( analyzer.stocks['VRT']['Close'],   
   analyzer.stocks['BWXT']['Close'] )
+
 np.corrcoef( analyzer.stocks['CAT']['Close'], 
   analyzer.stocks['ET']['Close'])
+
 np.corrcoef(analyzer.stocks['CSCO']['Close'],  
   analyzer.stocks['BEN']['Close'] )
 
