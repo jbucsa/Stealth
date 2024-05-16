@@ -190,10 +190,10 @@ class StockScatterAnalyzer:
     data_Scattered = pd.concat(data_list, axis=1, keys=data_to_plot.keys())
 
     # Create figure and subplots with desired layout
-    fig, axes = plt.subplots(len(data_Scattered.columns), len(data_Scattered.columns), figsize=(20, 20))
+    fig, axes = plt.subplots(len(data_Scattered.columns), len(data_Scattered.columns), figsize=(50, 50))
     
     # Create scatter matrix
-    matrix = scatter_matrix(data_Scattered, figsize=(20, 20), alpha=0.8, diagonal='hist', hist_kwds={'bins': 250})
+    matrix = scatter_matrix(data_Scattered, figsize=(50, 50), alpha=0.8, diagonal='hist', hist_kwds={'bins': 250})
 
     # Calculate correlation matrix
     correlation_matrix = np.corrcoef(data_Scattered.values.T)
