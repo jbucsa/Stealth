@@ -87,3 +87,66 @@ plt.show()
 # Principal Components and Explained Variance
 # Downloading More Instruments
 equities = yf.download('GOOG,AMZN,NFLX,BAC,JPM,WFC', start='2020-1-1', progress=False).Close
+
+# Build a PCA Function that returns eigenvectors in order of their sign
+def pca(assets):
+    x = assets.pct_change().dropna()
+    p = np.linalg.eig((x-x.mean()).cov())
+    evalues = p[0]
+    evectors = p[1]
+    # sort
+    return np.sort(evalues/sum(evalues))[::-1], evectors[:,np.argsort(evalues)]
+
+# Explained Variance - How many principal components required to explain variance
+evalues, evectors = pca(equities)
+plt.plot(np.cumsum(evalues), '-o')
+plt.title('Number of Principal Components vs Explained Variance')
+plt.xlabel('Number of Components')
+plt.ylabel('Explained Variance')
+plt.show()
+
+# Define our Assets
+tech_stocks = yf.download('GOOG,AMZN,NFLX', start='2020-1-1', progress=False).Close
+bank_stocks = yf.download('BAC,JPM,WFC', start='2020-1-1', progress=False).Close
+commodities = yf.download('CL=F,RB=F,GC=F', start='2020-1-1', progress=False).Close
+
+
+# Factor Analysis
+r = []
+lookback = 50
+
+r.append(tech_stocks['GOOG'].pct_change().iloc[-lookback:].values)
+r.append(tech_stocks['AMZN'].pct_change().iloc[-lookback:].values)
+r.append(tech_stocks['NFLX'].pct_change().iloc[-lookback:].values)
+
+r.append(bank_stocks['BAC'].pct_change().iloc[-lookback:].values)
+r.append(bank_stocks['JPM'].pct_change().iloc[-lookback:].values)
+r.append(bank_stocks['WFC'].pct_change().iloc[-lookback:].values)
+
+r.append(commodities['CL=F'].pct_change().iloc[-lookback:].values) # Cr
+r.append(commodities['RB=F'].pct_change().iloc[-lookback:].values) # RB
+r.append(commodities['GC=F'].pct_change().iloc[-lookback:].values) # Go
+
+R = np.array(r)
+
+# Eigen System: Element [0]=eValues, [1]=eVectors
+eigenSystem = np.linalg.eig(np.cov(R-np.mean(R)))
+
+# Plot Results by Eigen Value Components
+colour = ['r']*3 + ['b']*3 + ['g']*3
+
+# Plot Assets
+for j,i in enumerate(eigenSystem[1]):
+    plt.plot(i[0], i[1], '-o', c=colour[j], ms=10)
+
+# Plot Circle
+for i in np.linspace(-np.pi, np.pi, 1500):
+    plt.plot(np.cos(i), np.sin(i), 'k.', ms=0.3)
+    
+plt.title('Factor Groupings')
+plt.xlabel('first component')
+plt.ylabel('second component')
+plt.axis('equal')
+plt.show();
+
+# Factor Analysis Automation
