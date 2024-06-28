@@ -111,56 +111,83 @@ combined_chart_Line_With_Line.save('linear_regression_closing_price_over_time_Li
 # ARIMA
 # This code does take a long time to run
 
-import yfinance as yf
-import pandas as pd
-from pmdarima.arima import auto_arima
-from statsmodels.tsa.arima.model import ARIMA
-import matplotlib.pyplot as plt
+tickers2021 = ['ET']
+Data = {}
+for x in tickers2021:
+  Data[x] = yf.download(x, period='2y', interval='1d', progress=False)
 
-def download_and_arima(ticker, start_date, end_date):
-    # Download data
-    data = yf.download(ticker, start=start_date, end=end_date)["Adj Close"]
 
-    # Automatic ARIMA model selection
-    auto_model = auto_arima(
-        data, 
-        start_p=5, max_p=9, 
-        start_q=5, max_q=9,
-        start_d=3, max_d=5,
-        seasonal=False,
-        trace=True
-    )
-    
-    # Fit the best ARIMA model
-    model = ARIMA(data, order=auto_model.order)
+slope_parameter = []
+
+for x in tickers2021:
+  Temp = Data[x]
+  X_train = np.array([i for i in range(len(Temp))]).reshape(-1, 1)
+  y_train = Temp['Close'].values.reshape(-1, 1)
+  model = LinearRegression()
+  model.fit(X_train, y_train)
+  slope_parameter.append([x, model.coef_[0][0]])
+
+for x in slope_parameter:
+  temp = x[1]*30/Data[x[0]]['Close'][-1]
+  x[1] = temp
+slope_parameter.sort(key=lambda x: x[1], reverse = True)
+
+Scores3 =[]
+
+for i in range(50):
+  x = slope_parameter[i][0]
+  Close = Data[x]['Close']
+  p = q = range(0, 5)
+  d = range(0, 3)
+  pdq = list(itertools.product(p, d, q))
+  results = []
+  for param in pdq:
+    try:
+        model = sm.tsa.ARIMA(Close, order=param)
+        model_fit = model.fit()
+        results.append([param, model_fit.aic])
+    except:
+        continue
+  results.sort(key=lambda x: x[1])
+  best_params = results[0][0]
+  model = sm.tsa.ARIMA(Close, order=best_params)
+  model_fit = model.fit()
+  forecast = model_fit.forecast(steps= 30)
+  Scores3.append([x, 100*(forecast[280] - Close[-1])/Close[-1], best_params])
+
+Scores3.sort(key=lambda x: x[1], reverse = True)
+
+Close = Data['ET']['Close']
+p = q = range(5, 9)
+d = range(3, 5)
+pdq = list(itertools.product(p, d, q))
+re = []
+for param in pdq:
+  try:
+    model = sm.tsa.ARIMA(Close, order=param)
     model_fit = model.fit()
+    re.append([param, model_fit.aic])
+  except:
+    continue
+re.sort(key=lambda x: x[1])
+best_params = results[0][0]
+model = sm.tsa.ARIMA(Close, order=best_params)
+model_fit = model.fit()
+forecast = model_fit.forecast(steps= 30)
 
-    # Make predictions
-    forecast = model_fit.get_forecast(steps=30)  # Predict next 30 days
-    forecasted_values = forecast.predicted_mean
-    confidence_intervals = forecast.conf_int()
 
-    # Plot results
-    plt.figure(figsize=(12, 6))
-    plt.plot(data, label="Actual Prices")
-    plt.plot(forecasted_values, label="Forecasted Prices", color="red")
-    plt.fill_between(
-        confidence_intervals.index,
-        confidence_intervals.iloc[:, 0],
-        confidence_intervals.iloc[:, 1],
-        color="gray",
-        alpha=0.2
-    )
-    plt.xlabel("Date")
-    plt.ylabel("Adjusted Closing Price")
-    plt.title(f"ARIMA Model for {ticker}")
-    plt.legend()
-    plt.show()
+print(100 * (forecast[504] - Close[-1]) / Close[-1])
 
-# Get user input
-ticker = input("Enter stock ticker symbol (e.g., AAPL): ")
-start_date = input("Enter start date (YYYY-MM-DD): ")
-end_date = input("Enter end date (YYYY-MM-DD): ")
+print(best_params)
 
-# Run the analysis
-download_and_arima(ticker='ET', start_date='2022-01-01', end_date='2024-05-27')
+plt.figure(figsize=(10, 6))
+plt.plot(Close.index, Close, label='Actual Prices', color='blue')
+
+future_dates = pd.date_range(start=Close.index[-1], periods=31)[1:]
+plt.plot(future_dates, forecast, label='Future Predictions', color='red')
+
+plt.title('ARIMA Model Prediction for ET')
+plt.xlabel('Date')
+plt.ylabel('Price')
+plt.legend()
+plt.show()
