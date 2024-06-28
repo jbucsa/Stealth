@@ -104,3 +104,63 @@ combined_chart_Line_With_Line = combined_chart_Line_With_Line.interactive()  # A
 
 # Save the chart
 combined_chart_Line_With_Line.save('linear_regression_closing_price_over_time_Line_Vs_Line.html')  # Save as interactive HTML
+
+
+
+
+# ARIMA
+# This code does take a long time to run
+
+import yfinance as yf
+import pandas as pd
+from pmdarima.arima import auto_arima
+from statsmodels.tsa.arima.model import ARIMA
+import matplotlib.pyplot as plt
+
+def download_and_arima(ticker, start_date, end_date):
+    # Download data
+    data = yf.download(ticker, start=start_date, end=end_date)["Adj Close"]
+
+    # Automatic ARIMA model selection
+    auto_model = auto_arima(
+        data, 
+        start_p=5, max_p=9, 
+        start_q=5, max_q=9,
+        start_d=3, max_d=5,
+        seasonal=False,
+        trace=True
+    )
+    
+    # Fit the best ARIMA model
+    model = ARIMA(data, order=auto_model.order)
+    model_fit = model.fit()
+
+    # Make predictions
+    forecast = model_fit.get_forecast(steps=30)  # Predict next 30 days
+    forecasted_values = forecast.predicted_mean
+    confidence_intervals = forecast.conf_int()
+
+    # Plot results
+    plt.figure(figsize=(12, 6))
+    plt.plot(data, label="Actual Prices")
+    plt.plot(forecasted_values, label="Forecasted Prices", color="red")
+    plt.fill_between(
+        confidence_intervals.index,
+        confidence_intervals.iloc[:, 0],
+        confidence_intervals.iloc[:, 1],
+        color="gray",
+        alpha=0.2
+    )
+    plt.xlabel("Date")
+    plt.ylabel("Adjusted Closing Price")
+    plt.title(f"ARIMA Model for {ticker}")
+    plt.legend()
+    plt.show()
+
+# Get user input
+ticker = input("Enter stock ticker symbol (e.g., AAPL): ")
+start_date = input("Enter start date (YYYY-MM-DD): ")
+end_date = input("Enter end date (YYYY-MM-DD): ")
+
+# Run the analysis
+download_and_arima(ticker='ET', start_date='2022-01-01', end_date='2024-05-27')
