@@ -78,9 +78,39 @@ earnings_df.to_csv('earnings_df.csv', index=True)
 
 
 
-revenue = [21.63, 20.53, 20.74, 18.32, 19.00, 20.50, 22.94, 25.95, 20.49]
-gross_profits = [5.03, 4.75, 4.68, 4.23, None, None , None , None , None    ]
-net_income = [1.24, 1.33, 0.54,0.91, None, None , None , None , None] 
-adjusted_EBIDTA = [115.2, 147.6, 106.5, 107, 110.7, 130.1, 100.1, 114.7, 94.4]
-GAAP_EPS = [0.32, 0.37, 0.31, 0.25, 0.32, 0.34, 0.29, 0.39, 0.37]
-time = ["Q1 '24", "Q4 '23", "Q3 '23", "Q2 '23", "Q1 '23", "Q4 '22", "Q3 '22", "Q2 '22", "Q1 '22"]
+revenue = [21.63, 20.53, 20.74, 18.32, 19.00, 20.50, 22.94, 25.95]
+gross_profits = [4.77,3.29, 3.34, 2.93, 3.09, 3.17, 2.95, 3.17]
+net_income = [1.24, 1.33, 0.584,0.911, 1.11, 1.16 , 1.01 , 1.33] 
+adjusted_EBIDTA = [3.62, 3.22, 2.40, 2.72, 2.87, 2.85, 2.70, 3.04]
+GAAP_EPS = [0.32, 0.37, 0.31, 0.25, 0.32, 0.34, 0.29, 0.39]
+time = ["Q1 '24", "Q4 '23", "Q3 '23", "Q2 '23", "Q1 '23", "Q4 '22", "Q3 '22", "Q2 '22"]
+
+
+plt.figure(figsize=(12, 6))
+plt.subplot(2, 2, 1)
+plt.plot(time[::-1], revenue[::-1])
+plt.title("Revenue")
+plt.ylabel("1B US$")
+plt.xticks(rotation=60)
+plt.grid()
+plt.subplot(2, 2, 2)
+plt.plot(time[::-1], net_income[::-1])
+plt.title("Net Income")
+plt.ylabel("1B US$")
+plt.xticks(rotation=60)
+plt.grid()
+plt.subplot(2, 2, 3)
+plt.plot(time[::-1], adjusted_EBIDTA[::-1])
+plt.title("Adjusted EBIDTA")
+plt.ylabel("1B US$")
+plt.xticks(rotation=60)
+plt.grid()
+plt.subplot(2, 2, 4)
+plt.plot(time[::-1], GAAP_EPS[::-1])
+plt.title("Earning per share")
+plt.ylabel("US$")
+plt.xticks(rotation=60)
+plt.grid()
+
+plt.subplots_adjust(left=0.1, right=0.9, bottom=0.1, top=0.9, wspace=0.2, hspace=0.4)
+plt.show()
