@@ -85,6 +85,7 @@ plt.show()
 
 
 # Principal Components and Explained Variance
+# Principal component analysis
 # Downloading More Instruments
 equities = yf.download('GOOG,AMZN,NFLX,BAC,JPM,WFC', start='2020-1-1', progress=False).Close
 

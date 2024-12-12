@@ -49,7 +49,7 @@ def plot_sarimax_forecast(ticker, data, forecast_steps=180):
 
 
 
-# def plot_sarimax_forecast(ticker, data, forecast_steps=180):
+def plot_sarimax_forecast2(ticker, data, forecast_steps=180):
     """
     Plots the historical close prices and the SARIMA forecast for a given stock.
 
